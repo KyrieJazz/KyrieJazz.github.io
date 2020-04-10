@@ -20,6 +20,22 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+    .pace .pace-progress {
+        background: #FF9900; /*��������ɫ*/
+        height: 5px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px 	#000000, 0 0 5px #000000; /*��Ӱ��ɫ*/
+    }
+    .pace .pace-activity {
+        border-top-color: #FF9900;    /*�ϱ߿���ɫ*/
+        border-left-color: #FF9900;    /*��߿���ɫ*/
+    }
+</style>
   <meta name="description" content="在搭建以Hexo为框架的博客中遇到的问题. 写在前面 ​    依照B站UP主CodeSheep的视频内容，我用一下午的时间搭建了这个现在看起来十分简陋的博客。不过相信自己在未来会慢慢运营，把他变得更好。博客的主要内容就是想记录自己的学习过程，同时也给自己多找点事情干…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在搭建以Hexo为框架的博客中遇到的问题">
@@ -99,7 +115,7 @@
       <h1 class="site-title">Jazz Fu Park</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">Welcome Back！</p>
+      <p class="site-subtitle" itemprop="description">欢迎来到子健的博客！</p>
   </div>
 
   <div class="site-nav-right">
@@ -166,7 +182,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="Jazz Fu">
-      <meta itemprop="description" content="子健的Blog">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -287,7 +303,7 @@
     <img class="site-author-image" itemprop="image" alt="Jazz Fu"
       src="/images/avatar.png">
   <p class="site-author-name" itemprop="name">Jazz Fu</p>
-  <div class="site-description" itemprop="description">子健的Blog</div>
+  <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
