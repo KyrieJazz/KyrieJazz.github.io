@@ -170,7 +170,8 @@
 
           <div class="content index posts-expand">
             
-      
+    
+        
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -197,125 +198,15 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-04-14 23:11:04 / 修改时间：23:28:54" itemprop="dateCreated datePublished" datetime="2020-04-14T23:11:04+08:00">2020-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h1><h2 id="树的表示方法"><a href="#树的表示方法" class="headerlink" title="树的表示方法"></a>树的表示方法</h2><blockquote>
-<p>孩子表示法</p>
-<blockquote>
-<p> 每个结点设置多个指针域，指针指向子树的根结点。即多重链表表示法</p>
-<p> 由于每个结点的度不相同，指针域的个数难以统一，通过两种方案解决</p>
-</blockquote>
-</blockquote>
-<ul>
-<li><p>方案一</p>
-<p>以树的度作为指针域的个数 ——在各个结点的度相差很大时会导致空间的浪费</p>
-<p>适用于结点的度相差不大的情况</p>
-</li>
-<li><p>方案二</p>
-<p>再取一个位置用来保存统计出的结点指针域的个数，提高了空间利用效率，但是却浪费了时间。</p>
-</li>
-<li><p>综上所述</p>
-<p>采取数组和单链表综合的方法，把树中的结点采用线性存储结构连成一个数组，并将其作为头指针连接一个由孩子结点构成的链表。</p>
-<blockquote>
-<p>结构定义代码如下</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_TREE_SIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span>   //孩子结点 -&gt; 孩子链表 </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> child;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; *ChildPtr;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>  //表头结构 -&gt; 表头数组</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    TElemType data;</span><br><span class="line">    ChildPtr firstchild;</span><br><span class="line">&#125; CTBox;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>  //树结构</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    CTBox nodes [MAX_TREE_SIZE];</span><br><span class="line">    <span class="keyword">int</span> r, n;   <span class="comment">//根的位置和结点数</span></span><br><span class="line">&#125;CTree;</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>双亲孩子表示法</p>
-</blockquote>
-<ul>
-<li><p>由于查找某个结点的双亲需要遍历整个树，复杂度高, 升级为双亲孩子表示法</p>
-<p>简单修改：在头指针中加入一个域用于存储该节点双亲的位置，双亲不存在值为-1。</p>
-</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_TREE_SIZE 100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span>  //*孩子结点 -&gt; 孩子链表* </span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> child;</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span> *<span class="title">next</span>;</span></span><br><span class="line"></span><br><span class="line">&#125; *ChildPtr;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> //*表头结构 -&gt; 表头数组*</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">  TElemType data;</span><br><span class="line"></span><br><span class="line">  ChildPtr parent, firstchild;  <span class="comment">//*增加一个位置存储双亲的位置*</span></span><br><span class="line"></span><br><span class="line">&#125; CTBox;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> //*树结构*</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">  CTBox nodes [MAX_TREE_SIZE];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> r, n;  <span class="comment">//*根的位置和结点数*</span></span><br><span class="line"></span><br><span class="line">&#125;CTree;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<blockquote>
-<p> 孩子兄弟表示法</p>
-</blockquote>
-<ul>
-<li><p>优点： 把复杂的树转化成为一颗二叉树</p>
-<blockquote>
-<p>结构定义</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">  TElemtype data;</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span> *<span class="title">firstchild</span>, *<span class="title">rightsib</span>;</span> <span class="comment">//每一个结点包含三个部分，数据域、长子指针、右兄弟指针</span></span><br><span class="line"></span><br><span class="line">&#125;CSNode, *CSTree;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/08/%E5%9C%A8%E6%90%AD%E5%BB%BA%E4%BB%A5Hexo%E4%B8%BA%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jazz Fu">
-      <meta itemprop="description" content="欢迎来到子健的博客！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jazz Fu Park">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/08/%E5%9C%A8%E6%90%AD%E5%BB%BA%E4%BB%A5Hexo%E4%B8%BA%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">第一篇测试文章</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-08 18:19:50" itemprop="dateCreated datePublished" datetime="2020-04-08T18:19:50+08:00">2020-04-08</time>
+              <time title="创建时间：2020-04-14 23:11:04" itemprop="dateCreated datePublished" datetime="2020-04-14T23:11:04+08:00">2020-04-14</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-14 18:24:52" itemprop="dateModified" datetime="2020-04-14T18:24:52+08:00">2020-04-14</time>
+                <time title="修改时间：2020-04-15 14:07:00" itemprop="dateModified" datetime="2020-04-15T14:07:00+08:00">2020-04-15</time>
               </span>
 
           
@@ -329,10 +220,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="在搭建以Hexo为框架的博客中遇到的问题"><a href="#在搭建以Hexo为框架的博客中遇到的问题" class="headerlink" title="在搭建以Hexo为框架的博客中遇到的问题."></a>在搭建以Hexo为框架的博客中遇到的问题.</h1><blockquote>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3></blockquote>
-<p>​    依照B站UP主CodeSheep的视频内容，我用一下午的时间搭建了这个现在看起来十分简陋的博客。不过相信自己在未来会慢慢运营，把他变得更好。博客的主要内容就是想记录自己的学习过程，同时也给自己多找点事情干…</p>
-
+          <p>本文描述了树的几种表示方法</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -347,7 +243,9 @@
   
   
 
-      
+    
+    
+        
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -416,6 +314,76 @@
   
   
 
+    
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/08/%E5%9C%A8%E6%90%AD%E5%BB%BA%E4%BB%A5Hexo%E4%B8%BA%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jazz Fu">
+      <meta itemprop="description" content="欢迎来到子健的博客！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jazz Fu Park">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/08/%E5%9C%A8%E6%90%AD%E5%BB%BA%E4%BB%A5Hexo%E4%B8%BA%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">第一篇测试文章</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-08 18:19:50" itemprop="dateCreated datePublished" datetime="2020-04-08T18:19:50+08:00">2020-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-14 18:24:52" itemprop="dateModified" datetime="2020-04-14T18:24:52+08:00">2020-04-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="在搭建以Hexo为框架的博客中遇到的问题"><a href="#在搭建以Hexo为框架的博客中遇到的问题" class="headerlink" title="在搭建以Hexo为框架的博客中遇到的问题."></a>在搭建以Hexo为框架的博客中遇到的问题.</h1><blockquote>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3></blockquote>
+<p>​    依照B站UP主CodeSheep的视频内容，我用一下午的时间搭建了这个现在看起来十分简陋的博客。不过相信自己在未来会慢慢运营，把他变得更好。博客的主要内容就是想记录自己的学习过程，同时也给自己多找点事情干…</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
 
   
 
@@ -496,6 +464,14 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kyriejazz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kyriejazz" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/Jazz_DrF" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;Jazz_DrF" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
 
 
 
