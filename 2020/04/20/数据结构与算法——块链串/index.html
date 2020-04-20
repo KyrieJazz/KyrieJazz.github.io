@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+    .pace .pace-progress {
+        background: #FF9900; /*��������ɫ*/
+        height: 5px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px 	#000000, 0 0 5px #000000; /*��Ӱ��ɫ*/
+    }
+    .pace .pace-activity {
+        border-top-color: #FF9900;    /*�ϱ߿���ɫ*/
+        border-left-color: #FF9900;    /*��߿���ɫ*/
+    }
+</style>
+  <meta name="description" content="数据结构与算法——串块链串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法——串">
+<meta property="og:url" content="http://yoursite.com/2020/04/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%9D%97%E9%93%BE%E4%B8%B2/index.html">
+<meta property="og:site_name" content="Jazz Fu Park">
+<meta property="og:description" content="数据结构与算法——串块链串">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-20T03:42:04.000Z">
+<meta property="article:modified_time" content="2020-04-20T03:42:14.649Z">
+<meta property="article:author" content="Jazz Fu">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%9D%97%E9%93%BE%E4%B8%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数据结构与算法——串 | Jazz Fu Park</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Jazz Fu Park</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到子健的博客！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%9D%97%E9%93%BE%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jazz Fu">
+      <meta itemprop="description" content="欢迎来到子健的博客！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jazz Fu Park">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构与算法——串
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-20 11:42:04 / 修改时间：11:42:14" itemprop="dateCreated datePublished" datetime="2020-04-20T11:42:04+08:00">2020-04-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数据结构与算法——串"><a href="#数据结构与算法——串" class="headerlink" title="数据结构与算法——串"></a>数据结构与算法——串</h1><h2 id="块链串"><a href="#块链串" class="headerlink" title="块链串"></a><em>块链串</em></h2><a id="more"></a>
+
+<blockquote>
+<p>前言</p>
+</blockquote>
+<p>​    在学习串的存储结构时我们知道，顺序存储的方式往往会导致越界的问题出现，然而当我们采用链式存储结构动态分配内存时，如果仅仅是每一个结点只对应一个字符，就会导致很大的一部分空间被浪费。因此，我们使用块链串的概念来完善串的链式存储结构。</p>
+<blockquote>
+<p>什么是块链串</p>
+</blockquote>
+<p>​    简单来说，块链串就是将链表中的结点定义成一个数组，实现一个结点可以存储多个字符。而具体存储多少个字符，则要依据实际的情况做出选择。</p>
+<blockquote>
+<p>块链串的结构定义</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">clock</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">char</span> ch[BLOCK_SIZE];	<span class="comment">//用于存放字符串的数组  </span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> _<span class="title">block</span> *<span class="title">next</span>;</span>	<span class="comment">//用于链接的指针</span></span><br><span class="line">&#125; Block;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Block *head;	<span class="comment">//指向块链串的头结点</span></span><br><span class="line">  Block *tail;	<span class="comment">//始终指向块链串的尾结点</span></span><br><span class="line">  <span class="keyword">int</span> len;	<span class="comment">//记录块链串的总长度</span></span><br><span class="line">&#125;BLString;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>块链串的初始化</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">blstr_init</span><span class="params">(BLString *T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    T -&gt;len = <span class="number">0</span>;</span><br><span class="line">    T -&gt;head = <span class="literal">NULL</span>;</span><br><span class="line">    T -&gt;tail = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>块链串的SubString(BLString src, int pos, int len， BLString *sub,)函数</p>
+</blockquote>
+<p>​    该函数的作用是，用Sub返回串S中第pos个字符起长度为len的子串。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">blstr_substr</span><span class="params">(BLString src, <span class="keyword">int</span> pos, <span class="keyword">int</span> len, BLString *sub)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j, k, count;</span><br><span class="line">    Block *p, *r;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//是否满足题目条件的判断</span></span><br><span class="line">    <span class="comment">//原串是否为空</span></span><br><span class="line">    <span class="keyword">if</span>(src.head == <span class="literal">NULL</span> &amp;&amp; src.tail == <span class="literal">NULL</span> &amp;&amp; src.len == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">//pos的位置是否正确</span></span><br><span class="line">    <span class="keyword">if</span>(len &lt;= <span class="number">0</span> || pos &lt; <span class="number">0</span> || pos &gt; src.len - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使指针p移动到pos的位置上</span></span><br><span class="line">    <span class="keyword">for</span>(count = <span class="number">1</span>, p = src.head; pos &gt; count*BLOCK_SIZE; p = p-&gt;next, count++);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化指针r</span></span><br><span class="line">    r = sub-&gt;head;</span><br><span class="line">    <span class="comment">//i用于控制存入的变量个数</span></span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//j用于控制r中的数组切换</span></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//k用于控制src中的数组的切换</span></span><br><span class="line">    k = (pos % BLOCK_SIZE);  </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//如果pos之后的字符串不足len个，则返回src在pos之后的所有字符</span></span><br><span class="line">    <span class="keyword">if</span>(pos + len &gt; src.len)</span><br><span class="line">        len = src.len -pos;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i &lt; len)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!r)</span><br><span class="line">        &#123;</span><br><span class="line">            r = (Block*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Block));</span><br><span class="line">            <span class="keyword">if</span>(!r)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            r-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//解决第一次(*sub).head的初始化，使他指向r的以一个块</span></span><br><span class="line">            <span class="keyword">if</span>(!sub-&gt;head)</span><br><span class="line">                sub-&gt;head = sub-&gt;tail = r;</span><br><span class="line">            <span class="comment">//保证(*sub).tail始终指向r的末尾块</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                sub-&gt; tail -&gt; next = r;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//开始将pos之后len长度的字符串输入到r中</span></span><br><span class="line">        <span class="keyword">while</span>(i &lt; len)</span><br><span class="line">        &#123;</span><br><span class="line">            r-&gt;ch[j] = p-&gt;ch[k];</span><br><span class="line">            j = (<span class="number">1</span> + j) % BLOCK_SIZE;</span><br><span class="line">            k = (<span class="number">1</span> + k) % BLOCK_SIZE;</span><br><span class="line">            i++;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//控制p中的数组切换</span></span><br><span class="line">            <span class="keyword">if</span>(!k)</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">            <span class="comment">//控制r中的数组切换</span></span><br><span class="line">            <span class="keyword">if</span>(!j)</span><br><span class="line">            &#123;</span><br><span class="line">                r = r-&gt;next;</span><br><span class="line">                <span class="keyword">break</span>;  <span class="comment">//返回到上一级循环，给r重新分配一个BLOCK，并且调整tail指针的位置</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sub-&gt;len = len;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将r中最后一个BLOCK中没有字符的部分用 '#'补齐</span></span><br><span class="line">    count = (len - <span class="number">1</span>) % BLOCK_SIZE + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(count &lt; BLOCK_SIZE)</span><br><span class="line">    &#123;</span><br><span class="line">        sub-&gt;tail-&gt;ch[count] = <span class="string">'#'</span>;</span><br><span class="line">        count ++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<ul>
+<li>由上述代码，总体的结构是一个大的循环，循环的作用是给sub创建一个新的结点。循环结构的特别之处在于加入条件区别了sub的初始化和之后的链接。</li>
+<li>块链串的其他操作函数，之后遇到时在具体介绍吧！</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="prev" title="数据结构与算法-树与二叉树">
+      <i class="fa fa-chevron-left"></i> 数据结构与算法-树与二叉树
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构与算法——串"><span class="nav-number">1.</span> <span class="nav-text">数据结构与算法——串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#块链串"><span class="nav-number">1.1.</span> <span class="nav-text">块链串</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jazz Fu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jazz Fu</p>
+  <div class="site-description" itemprop="description">欢迎来到子健的博客！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kyriejazz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kyriejazz" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/Jazz_DrF" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;Jazz_DrF" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jazz Fu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" color="112 128 144" opacity='0.6' zIndex="-1" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+  
+  </body>
+  </html>
