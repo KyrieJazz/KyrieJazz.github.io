@@ -147,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a>
 
   </li>
   </ul>
@@ -218,7 +218,6 @@
 
       
         <h1 id="数据结构与算法——串"><a href="#数据结构与算法——串" class="headerlink" title="数据结构与算法——串"></a>数据结构与算法——串</h1><h2 id="块链串"><a href="#块链串" class="headerlink" title="块链串"></a><em>块链串</em></h2><a id="more"></a>
-
 <blockquote>
 <p>前言</p>
 </blockquote>
@@ -231,18 +230,15 @@
 <p>块链串的结构定义</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">clock</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">char</span> ch[BLOCK_SIZE];	<span class="comment">//用于存放字符串的数组  </span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> _<span class="title">block</span> *<span class="title">next</span>;</span>	<span class="comment">//用于链接的指针</span></span><br><span class="line">&#125; Block;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Block *head;	<span class="comment">//指向块链串的头结点</span></span><br><span class="line">  Block *tail;	<span class="comment">//始终指向块链串的尾结点</span></span><br><span class="line">  <span class="keyword">int</span> len;	<span class="comment">//记录块链串的总长度</span></span><br><span class="line">&#125;BLString;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>块链串的初始化</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">blstr_init</span><span class="params">(BLString *T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    T -&gt;len = <span class="number">0</span>;</span><br><span class="line">    T -&gt;head = <span class="literal">NULL</span>;</span><br><span class="line">    T -&gt;tail = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>块链串的SubString(BLString src, int pos, int len， BLString *sub,)函数</p>
 </blockquote>
 <p>​    该函数的作用是，用Sub返回串S中第pos个字符起长度为len的子串。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">blstr_substr</span><span class="params">(BLString src, <span class="keyword">int</span> pos, <span class="keyword">int</span> len, BLString *sub)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j, k, count;</span><br><span class="line">    Block *p, *r;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//是否满足题目条件的判断</span></span><br><span class="line">    <span class="comment">//原串是否为空</span></span><br><span class="line">    <span class="keyword">if</span>(src.head == <span class="literal">NULL</span> &amp;&amp; src.tail == <span class="literal">NULL</span> &amp;&amp; src.len == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">//pos的位置是否正确</span></span><br><span class="line">    <span class="keyword">if</span>(len &lt;= <span class="number">0</span> || pos &lt; <span class="number">0</span> || pos &gt; src.len - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使指针p移动到pos的位置上</span></span><br><span class="line">    <span class="keyword">for</span>(count = <span class="number">1</span>, p = src.head; pos &gt; count*BLOCK_SIZE; p = p-&gt;next, count++);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化指针r</span></span><br><span class="line">    r = sub-&gt;head;</span><br><span class="line">    <span class="comment">//i用于控制存入的变量个数</span></span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//j用于控制r中的数组切换</span></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//k用于控制src中的数组的切换</span></span><br><span class="line">    k = (pos % BLOCK_SIZE);  </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//如果pos之后的字符串不足len个，则返回src在pos之后的所有字符</span></span><br><span class="line">    <span class="keyword">if</span>(pos + len &gt; src.len)</span><br><span class="line">        len = src.len -pos;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(i &lt; len)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!r)</span><br><span class="line">        &#123;</span><br><span class="line">            r = (Block*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Block));</span><br><span class="line">            <span class="keyword">if</span>(!r)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            r-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//解决第一次(*sub).head的初始化，使他指向r的以一个块</span></span><br><span class="line">            <span class="keyword">if</span>(!sub-&gt;head)</span><br><span class="line">                sub-&gt;head = sub-&gt;tail = r;</span><br><span class="line">            <span class="comment">//保证(*sub).tail始终指向r的末尾块</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                sub-&gt; tail -&gt; next = r;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//开始将pos之后len长度的字符串输入到r中</span></span><br><span class="line">        <span class="keyword">while</span>(i &lt; len)</span><br><span class="line">        &#123;</span><br><span class="line">            r-&gt;ch[j] = p-&gt;ch[k];</span><br><span class="line">            j = (<span class="number">1</span> + j) % BLOCK_SIZE;</span><br><span class="line">            k = (<span class="number">1</span> + k) % BLOCK_SIZE;</span><br><span class="line">            i++;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//控制p中的数组切换</span></span><br><span class="line">            <span class="keyword">if</span>(!k)</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">            <span class="comment">//控制r中的数组切换</span></span><br><span class="line">            <span class="keyword">if</span>(!j)</span><br><span class="line">            &#123;</span><br><span class="line">                r = r-&gt;next;</span><br><span class="line">                <span class="keyword">break</span>;  <span class="comment">//返回到上一级循环，给r重新分配一个BLOCK，并且调整tail指针的位置</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sub-&gt;len = len;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将r中最后一个BLOCK中没有字符的部分用 '#'补齐</span></span><br><span class="line">    count = (len - <span class="number">1</span>) % BLOCK_SIZE + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(count &lt; BLOCK_SIZE)</span><br><span class="line">    &#123;</span><br><span class="line">        sub-&gt;tail-&gt;ch[count] = <span class="string">'#'</span>;</span><br><span class="line">        count ++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>​    </p>
 <ul>
 <li>由上述代码，总体的结构是一个大的循环，循环的作用是给sub创建一个新的结点。循环结构的特别之处在于加入条件区别了sub的初始化和之后的链接。</li>
@@ -270,7 +266,10 @@
     <a href="/2020/04/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="prev" title="数据结构与算法-树与二叉树">
       <i class="fa fa-chevron-left"></i> 数据结构与算法-树与二叉树
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/21/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" rel="next" title="二叉树的遍历">
+      二叉树的遍历 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -345,7 +344,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -443,6 +442,8 @@
 
 
 
+
+  
 
   
 

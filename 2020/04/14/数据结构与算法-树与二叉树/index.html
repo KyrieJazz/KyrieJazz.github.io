@@ -44,7 +44,7 @@
 <meta property="og:description" content="本文描述了树的几种表示方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-14T15:11:04.000Z">
-<meta property="article:modified_time" content="2020-04-15T06:07:00.720Z">
+<meta property="article:modified_time" content="2020-04-21T15:05:30.425Z">
 <meta property="article:author" content="Jazz Fu">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -147,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a>
 
   </li>
   </ul>
@@ -208,7 +208,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-15 14:07:00" itemprop="dateModified" datetime="2020-04-15T14:07:00+08:00">2020-04-15</time>
+                <time title="修改时间：2020-04-21 23:05:30" itemprop="dateModified" datetime="2020-04-21T23:05:30+08:00">2020-04-21</time>
               </span>
 
           
@@ -223,9 +223,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h1><h2 id="树的表示方法"><a href="#树的表示方法" class="headerlink" title="树的表示方法"></a>树的表示方法</h2><a id="more"></a>
-
-<h3 id="孩子表示法"><a href="#孩子表示法" class="headerlink" title="孩子表示法"></a><em>孩子表示法</em></h3><p>每个结点设置多个指针域，指针指向子树的根结点。即多重链表表示法<br>由于每个结点的度不相同，指针域的个数难以统一，通过两种方案解决</p>
+        <h1 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a><strong>数据结构与算法</strong></h1><a id="more"></a>
+<h2 id="树的表示方法"><a href="#树的表示方法" class="headerlink" title="树的表示方法"></a><u>树的表示方法</u></h2><h4 id="孩子表示法"><a href="#孩子表示法" class="headerlink" title="孩子表示法"></a><em>孩子表示法</em></h4><p>每个结点设置多个指针域，指针指向子树的根结点。即多重链表表示法<br>由于每个结点的度不相同，指针域的个数难以统一，通过两种方案解决</p>
 <ul>
 <li><p>方案一</p>
 <p>以树的度作为指针域的个数 ——在各个结点的度相差很大时会导致空间的浪费</p>
@@ -242,29 +241,64 @@
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_TREE_SIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span>   //孩子结点 -&gt; 孩子链表 </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> child;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; *ChildPtr;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>  //表头结构 -&gt; 表头数组</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    TElemType data;</span><br><span class="line">    ChildPtr firstchild;</span><br><span class="line">&#125; CTBox;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>  //树结构</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    CTBox nodes [MAX_TREE_SIZE];</span><br><span class="line">    <span class="keyword">int</span> r, n;   <span class="comment">//根的位置和结点数</span></span><br><span class="line">&#125;CTree;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="双亲孩子表示法"><a href="#双亲孩子表示法" class="headerlink" title="双亲孩子表示法"></a><em>双亲孩子表示法</em></h3><ul>
+<h4 id="双亲孩子表示法"><a href="#双亲孩子表示法" class="headerlink" title="双亲孩子表示法"></a><em>双亲孩子表示法</em></h4><ul>
 <li><p>由于查找某个结点的双亲需要遍历整个树，复杂度高, 升级为双亲孩子表示法</p>
 <p>简单修改：在头指针中加入一个域用于存储该节点双亲的位置，双亲不存在值为-1。</p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_TREE_SIZE 100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span>  //*孩子结点 -&gt; 孩子链表* </span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> child;</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span> *<span class="title">next</span>;</span></span><br><span class="line"></span><br><span class="line">&#125; *ChildPtr;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> //*表头结构 -&gt; 表头数组*</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">  TElemType data;</span><br><span class="line"></span><br><span class="line">  ChildPtr parent, firstchild;  <span class="comment">//*增加一个位置存储双亲的位置*</span></span><br><span class="line"></span><br><span class="line">&#125; CTBox;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> //*树结构*</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">  CTBox nodes [MAX_TREE_SIZE];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> r, n;  <span class="comment">//*根的位置和结点数*</span></span><br><span class="line"></span><br><span class="line">&#125;CTree;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="孩子兄弟表示法"><a href="#孩子兄弟表示法" class="headerlink" title="孩子兄弟表示法"></a><em>孩子兄弟表示法</em></h3><ul>
+<h4 id="孩子兄弟表示法"><a href="#孩子兄弟表示法" class="headerlink" title="孩子兄弟表示法"></a><em>孩子兄弟表示法</em></h4><ul>
 <li><p>优点： 把复杂的树转化成为一颗二叉树</p>
 <blockquote>
 <p>结构定义</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">  TElemtype data;</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span> *<span class="title">firstchild</span>, *<span class="title">rightsib</span>;</span> <span class="comment">//每一个结点包含三个部分，数据域、长子指针、右兄弟指针</span></span><br><span class="line"></span><br><span class="line">&#125;CSNode, *CSTree;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
+<h2 id="二叉树的性质总结"><a href="#二叉树的性质总结" class="headerlink" title="二叉树的性质总结"></a><u>二叉树的性质总结</u></h2><blockquote>
+<p>性质一</p>
+</blockquote>
+<script type="math/tex; mode=display">
+二叉树的第i层上最多有2^{k-1}个结点</script><blockquote>
+<p>性质二</p>
+</blockquote>
+<script type="math/tex; mode=display">
+深度为k的二叉树最多有2^{k}-1个结点。(k\ge1)</script><blockquote>
+<p>性质三</p>
+</blockquote>
+<script type="math/tex; mode=display">
+对任何一个二叉树，若度为2的结点个数是n_2,那么终端结点的个数是(n_2+1)</script><blockquote>
+<p>性质四</p>
+</blockquote>
+<script type="math/tex; mode=display">
+具有n个结点的完全二叉树的深度是[log_2n]+1
+\\其[x]表示不大于x的最大整数</script><blockquote>
+<p>性质五</p>
+</blockquote>
+<script type="math/tex; mode=display">
+如果一个完全二叉树有n个结点，深度为[log_2n]+1，i是结点的编号(每层从左到右)，那么</script><script type="math/tex; mode=display">
+1.如果i=1，那么i是根节点，没有双亲；如果i>1,那么其双亲是[\frac{i}{2}]</script><script type="math/tex; mode=display">
+2.如果2i>n,那么结点i没有左孩子；否则其左孩子是结点2i</script><script type="math/tex; mode=display">
+3.如果2i+1>n,那么结点没有右孩子，否则其右孩子是结点(2i+1)</script><h2 id="二叉树的存储结构"><a href="#二叉树的存储结构" class="headerlink" title="二叉树的存储结构"></a><u>二叉树的存储结构</u></h2><h4 id="顺序存储结构"><a href="#顺序存储结构" class="headerlink" title="顺序存储结构"></a><em>顺序存储结构</em></h4><p>​        使用数组，按照二叉树的编号储存二叉树的结点</p>
+<pre><code>- 对于完全二叉树，由于编号的严格性，完全二叉树能够体现结点之间逻辑关系
+- 对于普通二叉树，不存在的结点设置成 ^ ,但是会导致存储空间的浪费
+</code></pre><h4 id="二叉链表"><a href="#二叉链表" class="headerlink" title="二叉链表"></a><em>二叉链表</em></h4><blockquote>
+<p> 二叉树的二叉链表的结点结构定义</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    TElemType data;		<span class="comment">//结点数据</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> *<span class="title">lchild</span>, *<span class="title">rchild</span>;</span>		<span class="comment">//左右孩子指针</span></span><br><span class="line">&#125; BiTnode, *BiTree</span><br></pre></td></tr></table></figure>
+<h2 id="二叉树的建立"><a href="#二叉树的建立" class="headerlink" title="二叉树的建立"></a><u>二叉树的建立</u></h2><h4 id="按照前序序列建立二叉树"><a href="#按照前序序列建立二叉树" class="headerlink" title="按照前序序列建立二叉树"></a><em>按照前序序列建立二叉树</em></h4><blockquote>
+<p>函数void CreateBitree（ BiTree *T )的描述</p>
+</blockquote>
+<p>​        将一般二叉树处理成扩展二叉树，并将结点的数据按照前序序列的顺序输入，若数据域为空，那么数据域中输入”#”</p>
+<blockquote>
+<p>代码实现</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateBiTree</span> <span class="params">(Bitree *T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ElemType ch;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;ch);</span><br><span class="line">    <span class="keyword">if</span>(ch == <span class="string">'#'</span>)</span><br><span class="line">        *T = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">    &#123;</span><br><span class="line">		*T = (BiTree)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BiTree));</span><br><span class="line">        <span class="keyword">if</span>(!*T)</span><br><span class="line">        	<span class="built_in">exit</span>(OVERFLOW);</span><br><span class="line">        (*T)-&gt;data = ch;</span><br><span class="line">        <span class="comment">//需要依据前序序列的录入顺序</span></span><br><span class="line">        <span class="comment">//使用了递归的调用</span></span><br><span class="line">        CreateBiTree(&amp;(*T)-&gt;lchlid);		<span class="comment">//构造左子树</span></span><br><span class="line">        CreatebiTree(&amp;(*T)-&gt;rchild);		<span class="comment">//构造右子树</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="按照中序或后续序列建立二叉树"><a href="#按照中序或后续序列建立二叉树" class="headerlink" title="按照中序或后续序列建立二叉树"></a><em>按照中序或后续序列建立二叉树</em></h4><p>​        <u>代码的内容一致，需要改变的地方有两处：</u>    </p>
+<ol>
+<li>输入结点数据的顺序要依照中序或后序序列的顺序</li>
+<li>代码中的递归部分和构造左右子树部分的代码的相对位置适当调整</li>
+</ol>
 
     </div>
 
@@ -349,7 +383,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构与算法"><span class="nav-number">1.</span> <span class="nav-text">数据结构与算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#树的表示方法"><span class="nav-number">1.1.</span> <span class="nav-text">树的表示方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#孩子表示法"><span class="nav-number">1.1.1.</span> <span class="nav-text">孩子表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双亲孩子表示法"><span class="nav-number">1.1.2.</span> <span class="nav-text">双亲孩子表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#孩子兄弟表示法"><span class="nav-number">1.1.3.</span> <span class="nav-text">孩子兄弟表示法</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构与算法"><span class="nav-number">1.</span> <span class="nav-text">数据结构与算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#树的表示方法"><span class="nav-number">1.1.</span> <span class="nav-text">树的表示方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#孩子表示法"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">孩子表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双亲孩子表示法"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">双亲孩子表示法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#孩子兄弟表示法"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">孩子兄弟表示法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树的性质总结"><span class="nav-number">1.2.</span> <span class="nav-text">二叉树的性质总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树的存储结构"><span class="nav-number">1.3.</span> <span class="nav-text">二叉树的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序存储结构"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">顺序存储结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉链表"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">二叉链表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树的建立"><span class="nav-number">1.4.</span> <span class="nav-text">二叉树的建立</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按照前序序列建立二叉树"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">按照前序序列建立二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按照中序或后续序列建立二叉树"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">按照中序或后续序列建立二叉树</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -365,7 +399,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -465,6 +499,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
