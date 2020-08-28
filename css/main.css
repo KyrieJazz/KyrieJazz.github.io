@@ -1273,7 +1273,7 @@ img:hover {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #90a1ff;
+  background: #e869ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2547,4 +2547,23 @@ mjx-container + br {
 }
 .links-of-blogroll-item {
   padding: 0;
+}
+body {
+  background: url("https://i.loli.net/2020/08/28/GzMoWTZ4kFKUN6i.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+.content-wrap {
+  opacity: 0.9;
+}
+.sidebar {
+  opacity: 0.9;
+}
+.header-inner {
+  background: rgba(255,255,255,0.9);
+}
+.popup {
+  opacity: 0.9;
 }
