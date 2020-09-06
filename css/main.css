@@ -1273,7 +1273,7 @@ img:hover {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #be79f7;
+  background: #9cff6c;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2549,7 +2549,7 @@ mjx-container + br {
   padding: 0;
 }
 body {
-  background: url("https://i.loli.net/2020/08/28/HaIZYGxh5qykr3S.png");
+  background: url("https://i.loli.net/2020/09/06/jhWNOT9HYKatbvy.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
