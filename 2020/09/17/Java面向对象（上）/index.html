@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon_32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon_16px.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/themes/black/pace-theme-loading-bar.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Java面向对象（上）​        在开始学习Java之前就知道Java是一种面向对象的编程语言，但是对于什么是面向对象却没有明确的了解，在学习了本章之后，对于面向对象有了初步的了解，本篇文章梳理了该章节的重点知识。 ​        如果感兴趣的话就继续看下去吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java面向对象（上）">
+<meta property="og:url" content="http://yoursite.com/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
+<meta property="og:site_name" content="Jazz Fu Park">
+<meta property="og:description" content="Java面向对象（上）​        在开始学习Java之前就知道Java是一种面向对象的编程语言，但是对于什么是面向对象却没有明确的了解，在学习了本章之后，对于面向对象有了初步的了解，本篇文章梳理了该章节的重点知识。 ​        如果感兴趣的话就继续看下去吧！">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-17T15:52:34.000Z">
+<meta property="article:modified_time" content="2020-09-17T15:56:09.609Z">
+<meta property="article:author" content="Jazz Fu">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java面向对象（上） | Jazz Fu Park</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Jazz Fu Park</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">欢迎来到Jazz的博客！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">10</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jazz Fu">
+      <meta itemprop="description" content="欢迎来到Jazz的博客！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jazz Fu Park">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java面向对象（上）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-17 23:52:34 / 修改时间：23:56:09" itemprop="dateCreated datePublished" datetime="2020-09-17T23:52:34+08:00">2020-09-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Java面向对象（上）"><a href="#Java面向对象（上）" class="headerlink" title="Java面向对象（上）"></a>Java面向对象（上）</h1><p>​        在开始学习Java之前就知道Java是一种面向对象的编程语言，但是对于什么是面向对象却没有明确的了解，在学习了本章之后，对于面向对象有了初步的了解，本篇文章梳理了该章节的重点知识。</p>
+<p>​        如果感兴趣的话就继续看下去吧！</p>
+<a id="more"></a>
+<h3 id="面向对象的概念"><a href="#面向对象的概念" class="headerlink" title="面向对象的概念"></a>面向对象的概念</h3><p>​        <strong>面向对象程序设计</strong>（英语：Object-oriented programming，<a href="https://zh.wikipedia.org/wiki/缩写" target="_blank" rel="noopener">缩写</a>：OOP）是种具有<a href="https://zh.wikipedia.org/wiki/对象_(计算机科学" target="_blank" rel="noopener">对象</a>)概念的<a href="https://zh.wikipedia.org/wiki/编程范型" target="_blank" rel="noopener">程序编程典范</a>，同时也是一种程序开发的抽象方针。</p>
+<p>​        简单概括，面向对象开发是相对于结构化开发而言的，这种思想的产生来源于自然界，对于存在于自然界中的所有物质我们都能够将他归类，例如人类、动物类、食物类等等，而对于这些类我们都能够概括定义出他的属性和功能。针对程序设计，我们可以把程序看作是各种对象的集合。</p>
+<blockquote>
+<p>程序    =    自然界</p>
+<p>对象    =    人类、动物类……    </p>
+</blockquote>
+<h3 id="面向对象的特点"><a href="#面向对象的特点" class="headerlink" title="面向对象的特点"></a>面向对象的特点</h3><ul>
+<li>封装性：核心，将对象的属性和行为封装成类，实现对用户隐藏细节</li>
+<li>继承性：不同类之间关系的一种，目前还不太明确:(</li>
+<li>多态性：以统一的风格编写程序</li>
+</ul>
+<h2 id="1-类与对象"><a href="#1-类与对象" class="headerlink" title="1. 类与对象"></a>1. 类与对象</h2><h3 id="1-1-类与对象的关系"><a href="#1-1-类与对象的关系" class="headerlink" title="1.1 类与对象的关系"></a>1.1 类与对象的关系</h3><blockquote>
+<p> 类是一种抽象的概念模板，对象是类在程序中的实例</p>
+<p> 静态部分（属性）    =    成员变量</p>
+<p> 动态部分（功能）    =    成员方法</p>
+</blockquote>
+<p>​        例如：男人、女人是<code>类（class）</code>，具体的某个人就是该类的<code>对象（object）</code>。</p>
+<h3 id="1-2-Java中的类"><a href="#1-2-Java中的类" class="headerlink" title="1.2 Java中的类"></a>1.2 Java中的类</h3><p>​        类是对象的一个模板，描述的是一类对象的行为和状态。一个类中可以包含一下变量：</p>
+<ul>
+<li><p>局部变量</p>
+</li>
+<li><p>成员变量</p>
+</li>
+<li><p>类变量（静态变量）</p>
+<h4 id="1-2-1-构造方法"><a href="#1-2-1-构造方法" class="headerlink" title="1.2.1 构造方法"></a>1.2.1 构造方法</h4></li>
+</ul>
+<p>​        每个类至少要有一个构造方法，构造方法的名称与类同名。如果没有显式的定义构造方法，那么系统就会提供默认构造方法。</p>
+<blockquote>
+<p>注意：</p>
+<p>1.构造方法没有返回值类型，不能使用return返回一个值</p>
+</blockquote>
+<h5 id="构造方法中可能出现的错误"><a href="#构造方法中可能出现的错误" class="headerlink" title="构造方法中可能出现的错误"></a>构造方法中可能出现的错误</h5><p>​        当定义有参数的构造方法时，系统就不会再提供默认构造方法，可能会导致出错。</p>
+<h5 id="构造方法的重载"><a href="#构造方法的重载" class="headerlink" title="构造方法的重载"></a>构造方法的重载</h5><p>​        定义参数列表不同的构造方法，在实例化对象时，系统会自动调用参数列表匹配的构造方法</p>
+<h4 id="1-2-2-类的封装"><a href="#1-2-2-类的封装" class="headerlink" title="1.2.2 类的封装"></a>1.2.2 类的封装</h4><p>​        类的封装能够隐藏类的实现细节，主要方法</p>
+<blockquote>
+<p>通过private修饰私有属性，通过public公有化属性访问器（setXXX &amp;&amp; get XXX)</p>
+</blockquote>
+<h3 id="1-3-Java中的对象"><a href="#1-3-Java中的对象" class="headerlink" title="1.3 Java中的对象"></a>1.3 Java中的对象</h3><p>​        对象是根据类创建的，创建对象需要以下三步：</p>
+<ul>
+<li>声明对象：包括对象名（引用变量）和对象类型</li>
+<li>实例化：使用new关键字创建对象，开辟独立的堆内存空间</li>
+<li>初始化：使用new创建对象时，会调用构造方法初始化对象</li>
+</ul>
+<h2 id="2-this关键词"><a href="#2-this关键词" class="headerlink" title="2. this关键词"></a>2. this关键词</h2><p>​        为了避免冲突，this表示当前的对象，主要有以下三种用法：</p>
+<h3 id="2-1-this调用类的属性"><a href="#2-1-this调用类的属性" class="headerlink" title="2.1 this调用类的属性"></a>2.1 this调用类的属性</h3><p>​        当成员变量与局部变量重名时，使用this明确调用类的成员变量</p>
+<h3 id="2-2-this调用类的成员方法"><a href="#2-2-this调用类的成员方法" class="headerlink" title="2.2 this调用类的成员方法"></a>2.2 this调用类的成员方法</h3><p>​        用与访问成员变量相同的方式访问成员方法</p>
+<h3 id="2-3-this调用类的构造方法"><a href="#2-3-this调用类的构造方法" class="headerlink" title="2.3 this调用类的构造方法"></a>2.3 this调用类的构造方法</h3><p>​        调用方法：使用this[实参列表]调通其他的构造方法</p>
+<blockquote>
+<p>注意:</p>
+<p>1.在构造方法中调用构造方法（一层套娃）只能出现一次，并且this（）语句必须位于该构造方法的第一句。</p>
+<p>2.需要留一个构造方法作为出口，至少存在一个构造方法不使用this调用其他构造方法（通常将无参数的构造方法作为出口）</p>
+</blockquote>
+<h2 id="3-Java中的垃圾回收机制"><a href="#3-Java中的垃圾回收机制" class="headerlink" title="3.  Java中的垃圾回收机制"></a>3.  Java中的垃圾回收机制</h2><p>​    Java会自动回收堆内存中的垃圾空间，除此之外，还可以人为调用System. gc()方法建议需虚拟机立即执行垃圾回收，但是否执行并不能确定</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/justloveyou_/" target="_blank" rel="noopener">Java中的自动回收机制参考文章</a></p>
+</blockquote>
+<h2 id="4-static关键词"><a href="#4-static关键词" class="headerlink" title="4.  static关键词"></a>4.  static关键词</h2><h3 id="4-1-静态变量"><a href="#4-1-静态变量" class="headerlink" title="4.1 静态变量"></a>4.1 静态变量</h3><blockquote>
+<p>静态变量：使用static修饰的关键词修饰的成员变量，能够被类的所有对象所共同访问，可以直接通过类名来访问</p>
+<p>实例变量：未使用static修饰的成员变量，只能够通过引用变量访问</p>
+</blockquote>
+<ul>
+<li>注意：static在修饰变量的时候只能够修饰成员变量，不能够修饰方法中的局部变量</li>
+</ul>
+<h3 id="4-2-静态方法"><a href="#4-2-静态方法" class="headerlink" title="4.2 静态方法"></a>4.2 静态方法</h3><p>​        静态方法的调用不需要创建类的实例，可以直接通过类名调用</p>
+<ul>
+<li>注意：静态方法只能够访问类的静态成员，不能够访问实例成员。<code>原因：static修饰的成员属于类，而未被static修饰的成员都是属于对象的</code></li>
+</ul>
+<h3 id="4-3-代码块"><a href="#4-3-代码块" class="headerlink" title="4.3 代码块"></a>4.3 代码块</h3><p>​        使用<code>{}</code>括起来的一段代码，可以分为普通代码块、构造代码块、静态代码块、同步代码块</p>
+<h4 id="4-3-1-普通代码块"><a href="#4-3-1-普通代码块" class="headerlink" title="4.3.1 普通代码块"></a>4.3.1 普通代码块</h4><p>​        用在方法名后或方法体内，使用最多的、最普通的代码块</p>
+<h4 id="4-3-2-构造代码块"><a href="#4-3-2-构造代码块" class="headerlink" title="4.3.2 构造代码块"></a>4.3.2 构造代码块</h4><p>​        直接定义在类中，只有一对花括号，构造代码块在构造方法之前执行，同样是在创建对象时被自动调用。</p>
+<p>​        可用于初始化成员变量。</p>
+<blockquote>
+<p>多个构造代码都需要初始化成员变量，可将重复的部分提取，构成构造代码块</p>
+</blockquote>
+<h4 id="4-3-3-静态代码块"><a href="#4-3-3-静态代码块" class="headerlink" title="4.3.3 静态代码块"></a>4.3.3 静态代码块</h4><p>​        使用static修饰，最早执行的代码块，只会执行一次。</p>
+<h4 id="4-3-4-单例模式"><a href="#4-3-4-单例模式" class="headerlink" title="4.3.4 单例模式"></a>4.3.4 单例模式</h4><p>​        单例模式是一种设计模式。单例类只创建自己唯一的实例，只给全局提供一个直接访问点。</p>
+<blockquote>
+<p><strong>主要解决：</strong>一个全局使用的类频繁地创建与销毁。</p>
+<p><strong>何时使用：</strong>当您想控制实例数目，节省系统资源的时候。</p>
+</blockquote>
+<h2 id="5-内部类"><a href="#5-内部类" class="headerlink" title="5. 内部类"></a>5. 内部类</h2><p>​        在类中定义的类，他所在的类称为外部类。</p>
+<blockquote>
+<p>1.内部类和外部类是两个独立的类。</p>
+<p>2.内部类可以看成是外部类的一个成员，故内部类可以访问外部类的任何其他成员。</p>
+<p>3.内部类可被static修饰为静态，外部类只能用public或默认的访问权限</p>
+</blockquote>
+<h3 id="5-1-成员内部类"><a href="#5-1-成员内部类" class="headerlink" title="5.1 成员内部类"></a>5.1 成员内部类</h3><h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><blockquote>
+<p>​    向外：能直接访问外部类的所有成员</p>
+<p>​    向内：外部类只能通过创建内部类的对象来访问内部类的成员</p>
+</blockquote>
+<ul>
+<li>注意：成员内部类不能定义静态变量、静态方法和静态内部量</li>
+</ul>
+<h3 id="5-2-静态内部类"><a href="#5-2-静态内部类" class="headerlink" title="5.2 静态内部类"></a>5.2 静态内部类</h3><p>​        可以有实例成员和静态成员。</p>
+<blockquote>
+<p> 向外：直接访问外部类的静态成员；</p>
+<p> ​            必须通过外部类的对象访问外部类的实例成员</p>
+<p> 向内：访问静态内部类成员，不用创建外部类对象，只需创建内部类对象</p>
+</blockquote>
+<h3 id="5-3-方法内部类"><a href="#5-3-方法内部类" class="headerlink" title="5.3 方法内部类"></a>5.3 方法内部类</h3><p>​        成员方法中定义的类，作用域为定义它的代码块，只能在该成员方法内实例化。</p>
+<blockquote>
+<p>向外：也能够访问外部类成员</p>
+</blockquote>
+<h3 id="5-4-匿名内部类"><a href="#5-4-匿名内部类" class="headerlink" title="5.4 匿名内部类"></a>5.4 匿名内部类</h3><p>​        暂时没理解…</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/28/%E5%9C%A8%E6%90%AD%E5%BB%BA%E5%92%8C%E4%BC%98%E5%8C%96Hexo%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="在搭建和优化Hexo时遇到的问题">
+      <i class="fa fa-chevron-left"></i> 在搭建和优化Hexo时遇到的问题
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java面向对象（上）"><span class="nav-number">1.</span> <span class="nav-text">Java面向对象（上）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象的概念"><span class="nav-number">1.0.1.</span> <span class="nav-text">面向对象的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象的特点"><span class="nav-number">1.0.2.</span> <span class="nav-text">面向对象的特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-类与对象"><span class="nav-number">1.1.</span> <span class="nav-text">1. 类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-类与对象的关系"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 类与对象的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Java中的类"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 Java中的类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-构造方法"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.2.1 构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法中可能出现的错误"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">构造方法中可能出现的错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造方法的重载"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">构造方法的重载</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-类的封装"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">1.2.2 类的封装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Java中的对象"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 Java中的对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-this关键词"><span class="nav-number">1.2.</span> <span class="nav-text">2. this关键词</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-this调用类的属性"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 this调用类的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-this调用类的成员方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 this调用类的成员方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-this调用类的构造方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 this调用类的构造方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Java中的垃圾回收机制"><span class="nav-number">1.3.</span> <span class="nav-text">3.  Java中的垃圾回收机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-static关键词"><span class="nav-number">1.4.</span> <span class="nav-text">4.  static关键词</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-静态变量"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 静态变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-静态方法"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-代码块"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-普通代码块"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">4.3.1 普通代码块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-构造代码块"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">4.3.2 构造代码块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-静态代码块"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">4.3.3 静态代码块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-4-单例模式"><span class="nav-number">1.4.3.4.</span> <span class="nav-text">4.3.4 单例模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-内部类"><span class="nav-number">1.5.</span> <span class="nav-text">5. 内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-成员内部类"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 成员内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">1.5.2.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-静态内部类"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.2 静态内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-方法内部类"><span class="nav-number">1.5.4.</span> <span class="nav-text">5.3 方法内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-匿名内部类"><span class="nav-number">1.5.5.</span> <span class="nav-text">5.4 匿名内部类</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jazz Fu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jazz Fu</p>
+  <div class="site-description" itemprop="description">欢迎来到Jazz的博客！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kyriejazz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kyriejazz" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/Jazz_DrF" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;Jazz_DrF" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jazz Fu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" color="112 128 144" opacity='0.6' zIndex="-1" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+  
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+  </html>
