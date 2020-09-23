@@ -1,206 +1,226 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon_32px.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon_16px.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="https://user-images.githubusercontent.com/55520409/94028000-fe3e8800-fdaa-11ea-934b-a0abb14beb40.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="欢迎来到Jazz的博客！">
+  <meta name="author" content="Jazz Fu">
+  <meta name="keywords" content="">
+  <title>在搭建和优化Hexo时遇到的问题 - Jazz Fu Park</title>
 
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/themes/black/pace-theme-loading-bar.css">
-  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="记录自己在搭建博客的过程中所遇到的问题以及最终的解决办法">
-<meta property="og:type" content="article">
-<meta property="og:title" content="在搭建和优化Hexo时遇到的问题">
-<meta property="og:url" content="http://yoursite.com/2020/08/28/%E5%9C%A8%E6%90%AD%E5%BB%BA%E5%92%8C%E4%BC%98%E5%8C%96Hexo%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
-<meta property="og:site_name" content="Jazz Fu Park">
-<meta property="og:description" content="记录自己在搭建博客的过程中所遇到的问题以及最终的解决办法">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-28T14:39:36.000Z">
-<meta property="article:modified_time" content="2020-08-28T15:26:41.262Z">
-<meta property="article:author" content="Jazz Fu">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://yoursite.com/2020/08/28/%E5%9C%A8%E6%90%AD%E5%BB%BA%E5%92%8C%E4%BC%98%E5%8C%96Hexo%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  <title>在搭建和优化Hexo时遇到的问题 | Jazz Fu Park</title>
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<link  rel="stylesheet" href="/css/main.css" />
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<!-- 自定义样式保持在最底部 -->
 
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Jazz Park</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Jazz Fu Park</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">欢迎来到Jazz的博客！</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">1</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">10</span></a>
-
-  </li>
-  </ul>
 </nav>
 
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/28/%E5%9C%A8%E6%90%AD%E5%BB%BA%E5%92%8C%E4%BC%98%E5%8C%96Hexo%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jazz Fu">
-      <meta itemprop="description" content="欢迎来到Jazz的博客！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jazz Fu Park">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          在搭建和优化Hexo时遇到的问题
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
               
-
-              <time title="创建时间：2020-08-28 22:39:36 / 修改时间：23:26:41" itemprop="dateCreated datePublished" datetime="2020-08-28T22:39:36+08:00">2020-08-28</time>
             </span>
 
-          
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-08-28 22:39" pubdate>
+        2020年8月28日 晚上
+      </time>
+    </span>
+  
+</div>
 
-        </div>
-      </header>
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      935 字
+    </span>
+  
 
+  
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
       
-        <p>记录自己在搭建博客的过程中所遇到的问题以及最终的解决办法</p>
+      
+      11
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">在搭建和优化Hexo时遇到的问题</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>记录自己在搭建博客的过程中所遇到的问题以及最终的解决办法</p>
 <a id="more"></a>
 <h3 id="修改背景图的问题"><a href="#修改背景图的问题" class="headerlink" title="修改背景图的问题"></a>修改背景图的问题</h3><p>​        今天想要进一步的优化一下自己疫情期间搭建的博客，想要解决替换页面背景的问题。由于NexT版本的更新，在搜索引擎上得到的大部分指引都是针对在NexT 7.3.0以前的文件设置，而在NexT 7.3.0之后的版本无法找到<code>hexo/next/source/css/_custom/_custom.styl</code>文件，搜索到的解决办法也五花八门，尝试了很多方法都出现了不同的错误，比如今天所遇到的错误:</p>
 <ul>
@@ -212,7 +232,17 @@
 </ul>
 <ul>
 <li><p>出现错误</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ERROR Asset render failed: css&#x2F;main.css</span><br><span class="line">Error: D:\blog\themes\next\source\css\main.styl:47:11</span><br><span class="line">   43|</span><br><span class="line">   44| &#x2F;&#x2F; Custom Layer</span><br><span class="line">   45| &#x2F;&#x2F; --------------------------------------------------</span><br><span class="line">   46| for $inject_style in hexo-config(&#39;injects.style&#39;)</span><br><span class="line">   47|   @import $inject_style;</span><br><span class="line">-----------------^</span><br><span class="line">   48|</span><br><span class="line"></span><br><span class="line">failed to locate @import file D:\blog\source\_data\styles.styl</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs subunit"><span class="hljs-keyword">ERROR </span>Asset render failed: css/main.css
+<span class="hljs-keyword">Error: </span>D:\blog\themes\next\source\css\main.styl:47:11
+   43|
+   44| // Custom Layer
+   45| // --------------------------------------------------
+   46| for $inject_style in hexo-config('injects.style')
+   47|   @import $inject_style;
+-----------------^
+   48|
+
+failed to locate @import file D:\blog\source\_data\styles.styl</code></pre>
 <p>根据提示，我们推断是无法定位到指定文件，而该文件正是我们修改的<code>D:\blog\source\_data\styles.styl</code></p>
 </li>
 </ul>
@@ -220,7 +250,62 @@
 <li><p>解决办法</p>
 <ul>
 <li><p>参考作者：<a href="https://www.cnblogs.com/lyshark" target="_blank" rel="noopener">lyshark</a>（文章出处：<a href="https://www.cnblogs.com/lyshark）所给出的解决办法，在NexT" target="_blank" rel="noopener">https://www.cnblogs.com/lyshark）所给出的解决办法，在NexT</a> 7.3.0之后的版本，原本写在<code>hexo/next/source/css/_custom/_custom.styl</code>中的自定义样式代码，直接复制到错误提示的<code>D:\blog\themes\next\source\css\main.styl</code>中即可，最终修改成功的文件如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; CSS Style Guide: http:&#x2F;&#x2F;codeguide.co&#x2F;#css</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$scheme    &#x3D; hexo-config(&#39;scheme&#39;) ? hexo-config(&#39;scheme&#39;) : &#39;Muse&#39;;</span><br><span class="line"></span><br><span class="line">$variables &#x3D; base $scheme;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Variables Layer</span><br><span class="line">&#x2F;&#x2F; --------------------------------------------------</span><br><span class="line">for $variable in $variables</span><br><span class="line">  @import &quot;_variables&#x2F;&quot; + $variable;</span><br><span class="line">for $inject_variable in hexo-config(&#39;injects.variable&#39;)</span><br><span class="line">  @import $inject_variable;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Mixins Layer</span><br><span class="line">&#x2F;&#x2F; --------------------------------------------------</span><br><span class="line">@import &quot;_mixins.styl&quot;;</span><br><span class="line">for $inject_mixin in hexo-config(&#39;injects.mixin&#39;)</span><br><span class="line">  @import $inject_mixin;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Dark mode colors</span><br><span class="line">&#x2F;&#x2F; --------------------------------------------------</span><br><span class="line">@import &quot;_colors.styl&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Common Layer</span><br><span class="line">&#x2F;&#x2F; --------------------------------------------------</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Scaffolding</span><br><span class="line">@import &quot;_common&#x2F;scaffolding&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Layout</span><br><span class="line">@import &quot;_common&#x2F;outline&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Components</span><br><span class="line">@import &quot;_common&#x2F;components&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Schemes Layer</span><br><span class="line">&#x2F;&#x2F; --------------------------------------------------</span><br><span class="line">@import &quot;_schemes&#x2F;&quot; + $scheme;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Custom Layer</span><br><span class="line">&#x2F;&#x2F; --------------------------------------------------</span><br><span class="line">for $inject_style in hexo-config(&#39;injects.style&#39;)</span><br><span class="line">  @import $inject_style;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;背景图片</span><br><span class="line">body&#123;   </span><br><span class="line">        background:url(https:&#x2F;&#x2F;i.loli.net&#x2F;2020&#x2F;08&#x2F;28&#x2F;GzMoWTZ4kFKUN6i.png);</span><br><span class="line">        background-size:cover;</span><br><span class="line">        background-repeat:no-repeat;</span><br><span class="line">        background-attachment:fixed;</span><br><span class="line">        background-position:center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs xl"><span class="hljs-comment">// CSS Style Guide: http://codeguide.co/#css</span>
+
+
+$scheme    = hexo-config(<span class="hljs-string">'scheme'</span>) ? hexo-config(<span class="hljs-string">'scheme'</span>) : <span class="hljs-string">'Muse'</span>;
+
+$variables = base $scheme;
+
+
+<span class="hljs-comment">// Variables Layer</span>
+<span class="hljs-comment">// --------------------------------------------------</span>
+<span class="hljs-keyword">for</span> $variable <span class="hljs-built_in">in</span> $variables
+  @<span class="hljs-keyword">import</span> <span class="hljs-string">"_variables/"</span> + $variable;
+<span class="hljs-keyword">for</span> $inject_variable <span class="hljs-built_in">in</span> hexo-config(<span class="hljs-string">'injects.variable'</span>)
+  @<span class="hljs-keyword">import</span> $inject_variable;
+
+<span class="hljs-comment">// Mixins Layer</span>
+<span class="hljs-comment">// --------------------------------------------------</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">"_mixins.styl"</span>;
+<span class="hljs-keyword">for</span> $inject_mixin <span class="hljs-built_in">in</span> hexo-config(<span class="hljs-string">'injects.mixin'</span>)
+  @<span class="hljs-keyword">import</span> $inject_mixin;
+
+<span class="hljs-comment">// Dark mode colors</span>
+<span class="hljs-comment">// --------------------------------------------------</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">"_colors.styl"</span>;
+
+<span class="hljs-comment">// Common Layer</span>
+<span class="hljs-comment">// --------------------------------------------------</span>
+
+<span class="hljs-comment">// Scaffolding</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">"_common/scaffolding"</span>;
+
+<span class="hljs-comment">// Layout</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">"_common/outline"</span>;
+
+<span class="hljs-comment">// Components</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">"_common/components"</span>;
+
+
+<span class="hljs-comment">// Schemes Layer</span>
+<span class="hljs-comment">// --------------------------------------------------</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">"_schemes/"</span> + $scheme;
+
+
+<span class="hljs-comment">// Custom Layer</span>
+<span class="hljs-comment">// --------------------------------------------------</span>
+<span class="hljs-keyword">for</span> $inject_style <span class="hljs-built_in">in</span> hexo-config(<span class="hljs-string">'injects.style'</span>)
+  @<span class="hljs-keyword">import</span> $inject_style;
+
+<span class="hljs-comment">//背景图片</span>
+body&#123;   
+        <span class="hljs-built_in">background</span>:url(https:<span class="hljs-comment">//i.loli.net/2020/08/28/GzMoWTZ4kFKUN6i.png);</span>
+        <span class="hljs-built_in">background</span>-size:cover;
+        <span class="hljs-built_in">background</span>-repeat:no-repeat;
+        <span class="hljs-built_in">background</span>-attachment:fixed;
+        <span class="hljs-built_in">background</span>-position:center;
+&#125;</code></pre>
 <p>至此，博客的背景图修改完成！</p>
 </li>
 </ul>
@@ -235,212 +320,277 @@
 <p>  溜了</p>
 <p>  白白！</p>
 
-    </div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java面向对象（上）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/28/H%E2%80%9CHexo%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/">
+                        <span class="hidden-mobile">Hexo中的常见命令</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/08/28/H%E2%80%9CHexo%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/" rel="prev" title="Hexo中的常见命令">
-      <i class="fa fa-chevron-left"></i> Hexo中的常见命令
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/" rel="next" title="Java面向对象（上）">
-      Java面向对象（上） <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+            
+          </article>
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改背景图的问题"><span class="nav-number">1.</span> <span class="nav-text">修改背景图的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于背景图的URL链接"><span class="nav-number">2.</span> <span class="nav-text">关于背景图的URL链接</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是URL链接"><span class="nav-number">2.0.1.</span> <span class="nav-text">什么是URL链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何得到图片的URL地址"><span class="nav-number">2.0.2.</span> <span class="nav-text">如何得到图片的URL地址</span></a></li></ol></li></ol></li></ol></div>
       </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Jazz Fu"
-      src="/images/avatar.png">
-  <p class="site-author-name" itemprop="name">Jazz Fu</p>
-  <div class="site-description" itemprop="description">欢迎来到Jazz的博客！</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">10</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/kyriejazz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kyriejazz" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://weibo.com/Jazz_DrF" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;Jazz_DrF" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Jazz Fu</span>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
 
       </div>
-    </footer>
+    
   </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/three-waves.min.js"></script>
-
-
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
   
 
   
 
   
 
-  <script type="text/javascript" color="112 128 144" opacity='0.6' zIndex="-1" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
 
   
-  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
-  </html>
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "在搭建和优化Hexo时遇到的问题&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+      icon: "#"
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?86858a129f82a79628aae85cc386f5a9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
+</html>
