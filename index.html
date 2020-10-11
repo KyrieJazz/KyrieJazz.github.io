@@ -1,860 +1,422 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Jazz Fu Park</title><meta name="author" content="Jazz Fu"><meta name="copyright" content="Jazz Fu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta property="og:type" content="website">
+<meta property="og:title" content="Jazz Fu Park">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Jazz Fu Park">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/10/11/qIJ8W7C43bln9Lz.jpg">
+<meta property="article:author" content="Jazz Fu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/11/qIJ8W7C43bln9Lz.jpg"><link rel="shortcut icon" href="https://i.loli.net/2020/09/23/1iqhm4d268TWXzS.png"><link rel="canonical" href="http://yoursite.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '4.2.1',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
 
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-10-11 22:04:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="https://i.loli.net/2020/09/23/1iqhm4d268TWXzS.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="欢迎来到Jazz的博客！">
-  <meta name="author" content="Jazz Fu">
-  <meta name="keywords" content="">
-  <title>Jazz Fu Park</title>
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
-
-
-<body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Jazz Park</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://i.loli.net/2020/09/23/F9Q2JYgcuA8qNiK.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
-            
-          </div>
-
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="Java面向对象（上）">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/">Java面向对象（上）</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/">
-          
-          
-            
-          
-          Java面向对象（上）​        在开始学习Java之前就知道Java是一种面向对象的编程语言，但是对于什么是面向对象却没有明确的了解，在学习了本章之后，对于面向对象有了初步的了解，本篇文章梳理了该章节的重点知识。
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><style type="text/css">#toggle-sidebar {bottom: 80px}</style><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><meta name="generator" content="Hexo 4.2.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://i.loli.net/2020/10/11/qIJ8W7C43bln9Lz.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://i.loli.net/2020/10/11/MoBGmXuycpViTfh.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Jazz Fu Park</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">Jazz Fu Park</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/KyrieJazz" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/" title="Java面向对象（上）">Java面向对象（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-17T15:52:34.000Z" title="发表于 2020-09-17 23:52:34">2020-09-17</time></span></div><div class="content">Java面向对象（上）​        在开始学习Java之前就知道Java是一种面向对象的编程语言，但是对于什么是面向对象却没有明确的了解，在学习了本章之后，对于面向对象有了初步的了解，本篇文章梳理了该章节的重点知识。
 ​        如果感兴趣的话就继续看下去吧！
-        </a>
-      </p>
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-17 23:52" pubdate>
-              2020-09-17
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
+面向对象的概念​        面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象)概念的程序编程典范，同时也是一种程序开发的抽象方针。
+​        简单概括，面向对象开发是相对于结构化开发而言的，这种思想的产生来源于自然界，对于存在于自然界中的所有物质我们都能够将他归类，例如人类、动物类、食物类等等，而对于这些类我们都能够概括定义出他的属性和功能。针对程序设计，我们可以把程序看作是各种对象的集合。
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/08/28/%E5%9C%A8%E6%90%AD%E5%BB%BA%E5%92%8C%E4%BC%98%E5%8C%96Hexo%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="在搭建和优化Hexo时遇到的问题">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/28/%E5%9C%A8%E6%90%AD%E5%BB%BA%E5%92%8C%E4%BC%98%E5%8C%96Hexo%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">在搭建和优化Hexo时遇到的问题</a>
-      </h1>
+程序    =    自然界
+对象    =    人类、动物类……    
 
-      <p class="index-excerpt">
-        <a href="/2020/08/28/%E5%9C%A8%E6%90%AD%E5%BB%BA%E5%92%8C%E4%BC%98%E5%8C%96Hexo%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
-          
-          
-            
-          
-          记录自己在搭建博客的过程中所遇到的问题以及最终的解决办法
-        </a>
-      </p>
+面向对象的特点
+封装性：核心，将对象的属性和行为封装成类，实现对用户隐藏细节
+继承性：不同类之间关系的一种，目前还不太明确:(
+多态性：以统一的风格编写程序
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-28 22:39" pubdate>
-              2020-08-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
+1. 类与对象1. ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/08/28/%E5%9C%A8%E6%90%AD%E5%BB%BA%E5%92%8C%E4%BC%98%E5%8C%96Hexo%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" title="在搭建和优化Hexo时遇到的问题">在搭建和优化Hexo时遇到的问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-28T14:39:36.000Z" title="发表于 2020-08-28 22:39:36">2020-08-28</time></span></div><div class="content">记录自己在搭建博客的过程中所遇到的问题以及最终的解决办法
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/08/28/H%E2%80%9CHexo%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="Hexo中的常见命令">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/08/28/H%E2%80%9CHexo%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/">Hexo中的常见命令</a>
-      </h1>
+修改背景图的问题​        今天想要进一步的优化一下自己疫情期间搭建的博客，想要解决替换页面背景的问题。由于NexT版本的更新，在搜索引擎上得到的大部分指引都是针对在NexT 7.3.0以前的文件设置，而在NexT 7.3.0之后的版本无法找到hexo/next/source/css/_custom/_custom.styl文件，搜索到的解决办法也五花八门，尝试了很多方法都出现了不同的错误，比如今天所遇到的错误:
 
-      <p class="index-excerpt">
-        <a href="/2020/08/28/H%E2%80%9CHexo%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/">
-          
-          
-            
-          
-          ​    初步使用Hexo我们常用的命令
-        </a>
-      </p>
+初步尝试
+将原本放在hexo/next/source/css/_custom/_custom.styl中的自定义样式代码放在hexo/source/_data/styles.styl中
+在NexT的基本配置文件中将#style: source/_data/styles.styl的注释符号删除
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-28 22:26" pubdate>
-              2020-08-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/21/%E7%96%AB%E6%83%85%E6%9C%9F%E9%97%B4%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="疫情期间的一点感想">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/06/21/%E7%96%AB%E6%83%85%E6%9C%9F%E9%97%B4%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/">疫情期间的一点感想</a>
-      </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/06/21/%E7%96%AB%E6%83%85%E6%9C%9F%E9%97%B4%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/">
-          
-          
-            
-          
-          
-​    目前呆在家里的这种状态让我感到很不安，疫情一下打乱了原本正常的生活，我也一直处于有些焦虑的感觉。总之就是很不安，一想到这半年本该是在好好适应大学生活，彻底完成从一个高中生转变成一个大学生的过程，需要找到自己合适的节奏来选择自己应该努力的方向。但是如今回到家里，似乎又重新回到了2019年刚刚高考完的那个暑假，家里轻松的氛围让我很难像在学校那样集中精神，从一开始的干劲满满到现在提前进入假期
-        </a>
-      </p>
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-21 00:21" pubdate>
-              2020-06-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
+出现错误
+ERROR Asset render failed: css/main.css
+Error: D:\blog\themes\next\source\css\main.styl:47:11
+   43|
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/08/28/H%E2%80%9CHexo%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/" title="Hexo中的常见命令">Hexo中的常见命令</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-28T14:26:41.000Z" title="发表于 2020-08-28 22:26:41">2020-08-28</time></span></div><div class="content">​    初步使用Hexo我们常用的命令
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/10/TED-%E5%90%91%E6%AD%BB%E8%80%8C%E7%94%9F/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="TED-向死而生">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/06/10/TED-%E5%90%91%E6%AD%BB%E8%80%8C%E7%94%9F/">TED-向死而生</a>
-      </h1>
+hexo new "postName"		# 新建文章
+hexo new page "pageName"# 新建页面
+hexo generate 			# 生成静态页面至public目录
+hexo server				# 本地预览页面默认端口4000，可以通过‘ctrl+c’关闭server
+hexo deploy 			# 将文章部署到Github
+hexo version			# 查看Hexo的版本
 
-      <p class="index-excerpt">
-        <a href="/2020/06/10/TED-%E5%90%91%E6%AD%BB%E8%80%8C%E7%94%9F/">
-          
-          
-            
-          
-          ​        欣然地去面对那些已经降临的不幸吧，从它降临到你身上的那一刻起，他就已经成为了你生活的一部分。抗拒它、抵触它难道不是在抵触自己吗？
-        </a>
-      </p>
+常用的缩写命令：
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-10 22:50" pubdate>
-              2020-06-10
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
+hexo n == hexo new 
+hexo g == hexo generate
+hexo s == hexo server
+hexo d == hexo deploy
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/05/19/%E5%9B%BE%E2%80%94%E2%80%94%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E4%B8%AD%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%AE%97%E6%B3%95/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="图——最小生成树中的两种算法">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/05/19/%E5%9B%BE%E2%80%94%E2%80%94%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E4%B8%AD%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%AE%97%E6%B3%95/">图——最小生成树中的两种算法</a>
-      </h1>
+常用的组合命令：
 
-      <p class="index-excerpt">
-        <a href="/2020/05/19/%E5%9B%BE%E2%80%94%E2%80%94%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E4%B8%AD%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%AE%97%E6%B3%95/">
-          
-          
-            
-          
-          图——最小生成树中的两种算法1.最小生成树
+hexo s -g		# 生成并本地预览
+hexo d -g		# 生成并上传
+
+写文章时需要执行的命令：
+
+hexo new '文章名称'
+​    此时，Hexo会自动帮助我们在_posts文件下生成相关的md文件，使用Typora打开该文件即可开始编辑，使用该命令的好处是能够在文件夹中自动帮助我们生成文章的创建时间。当然 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/06/21/%E7%96%AB%E6%83%85%E6%9C%9F%E9%97%B4%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/" title="疫情期间的一点感想">疫情期间的一点感想</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-20T16:21:07.064Z" title="发表于 2020-06-21 00:21:07">2020-06-21</time></span></div><div class="content">
+​    目前呆在家里的这种状态让我感到很不安，疫情一下打乱了原本正常的生活，我也一直处于有些焦虑的感觉。总之就是很不安，一想到这半年本该是在好好适应大学生活，彻底完成从一个高中生转变成一个大学生的过程，需要找到自己合适的节奏来选择自己应该努力的方向。但是如今回到家里，似乎又重新回到了2019年刚刚高考完的那个暑假，家里轻松的氛围让我很难像在学校那样集中精神，从一开始的干劲满满到现在提前进入假期生活。我不知道同龄人、同学们的状态是不是和我一样，还是他们会比我做的好，排除这些干扰，在家依然收获满满。每次想到这里，我总是会从内心麻醉自己，有选择地去相信前者。但每天我都会懊恼于这种选择，我又希望自己不要虚度光阴，又难以坚持自己想要成为的那副摸样。于是，日子一天一天的就这样流了过去，如今总结，收获甚微。我一直希望自己不要活成自己讨厌的摸样，曾经的我应该觉得好吃懒做是讨厌的、混吃等死是讨厌的，可现在，我应该觉得“思想勤奋、身体懒惰”是同样讨厌的、用还没实现的未来许诺麻痹自己的是同样讨厌的、值得认真付出的事不能坚持到底是同样讨厌的。而这些讨厌就是现在的我，我总是在想是什么原因不能让我做那个我想要 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/06/10/TED-%E5%90%91%E6%AD%BB%E8%80%8C%E7%94%9F/" title="TED-向死而生">TED-向死而生</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-10T14:50:50.153Z" title="发表于 2020-06-10 22:50:50">2020-06-10</time></span></div><div class="content">​        欣然地去面对那些已经降临的不幸吧，从它降临到你身上的那一刻起，他就已经成为了你生活的一部分。抗拒它、抵触它难道不是在抵触自己吗？
+
+​    生死无法治疗，疾病的确会使人走向生命的终点，但是它并不是死亡本身。医院是治疗疾病的地方，而不是面对生死的地方。
+​    用温暖迎接悲痛，而不是厌恶。
+​    人类对食物的需求带来了烹饪，对遮蔽身体的需求促成了时尚，而对时间的服从则促使人们发明了音乐。既然死亡也是生命中必不可少的一部分，我们又能因它而创造出些什么呢？
+​    可以让死亡夺走我们的身体，但不要让它夺走我们的想象力。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/05/19/%E5%9B%BE%E2%80%94%E2%80%94%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E4%B8%AD%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%AE%97%E6%B3%95/" title="图——最小生成树中的两种算法">图——最小生成树中的两种算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-19T13:39:34.070Z" title="发表于 2020-05-19 21:39:34">2020-05-19</time></span></div><div class="content">图——最小生成树中的两种算法1.最小生成树
 什么是最小生成树
 
 ​    最小生成树是指以权值和最小的路径连通整个图中的所有顶点。
 ​    
 2.Prim算法1.1Prim算法的主要思想​    确定一个根，在所有已经连接的顶点之中比较所有权值，选择最小的一边，将另一端的顶点记录，不断延申，直到连接完所有的顶点。
-1.2 Prim算法的代码实现1.3 Prim算法的优势​    适用于稠密图建立
-        </a>
-      </p>
+1.2 Prim算法的代码实现1.3 Prim算法的优势​    适用于稠密图建立最小生成树
+3.Kruskal 算法2.1 Kruskal算法的主要思想​    把整张图看成是没有顶点的非连通图，通过选择最小权值两端，如果两端不在同一个连通分量上，就把他们合并成同一个连通分量；否则，继续选择下一个最小的权值。
+2.2 Kruskal算法的代码实现2.3 Kruskal算法的优势​    Kruskal算法针对图的边展开，因此更适用于边数较少的稀疏图建立最小生成树。
+图——最短路径&gt; 研究某两个固定顶点之间的权值和最小的路径
+1.Dijkstra算法
+计算某个源点到其余个点的最短路径问题
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-05-19 21:39" pubdate>
-              2020-05-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/04/28/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="数据结构与算法——线索二叉树">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/28/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/">数据结构与算法——线索二叉树</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/28/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/">
-          
-          
-            
-          
-          
+1.1Dijkstra算法的主要思路​    
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/04/28/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91/" title="数据结构与算法——线索二叉树">数据结构与算法——线索二叉树</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-28T11:44:43.000Z" title="发表于 2020-04-28 19:44:43">2020-04-28</time></span></div><div class="content">
 
 线索二叉树的引入
 
 ​        二叉树的结构特点会导致有大量的指针域空间的浪费，并且在二叉树的遍历时，每一次要想知道该结点的前驱和后继都需要进行一次遍历，这样会导致空间和时间上的浪费。因此，我们利用浪费的指针域，引入线索二叉树，同时解决上述两个问题。
-线索二叉树的原理​        初步想法是在二叉树中，我们利用没有指向孩子的指针域，使其指向该结点的前驱或后继。并且规定，原本指向左孩子
-        </a>
-      </p>
+线索二叉树的原理​        初步想法是在二叉树中，我们利用没有指向孩子的指针域，使其指向该结点的前驱或后继。并且规定，原本指向左孩子的指针域负责指向前驱结点，原本指向右孩子的指针域负责指向后继结点。
+​        为了方便记忆，我们可以把二叉树按照某种遍历次序想象成一个线性表，从左到右就是从前到后，方便记忆前驱和后继的指针位置。
+​        但是，这样的方式会导致我们无法得知，在指针域中究竟指向的是该结点的孩子结点还是指向前驱或后继。为此，我们需要稍加修改结点的结构，在其中加入两个域，分别为 ltag 和 rtag，用于分辨上述问题。
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-28 19:44" pubdate>
-              2020-04-28
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/04/21/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="二叉树的遍历">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/21/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/">二叉树的遍历</a>
-      </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/21/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/">
-          
-          
-            
-          
-          二叉树的遍历
-        </a>
-      </p>
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-21 20:42" pubdate>
-              2020-04-21
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
+数值
+1
+0
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/04/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%9D%97%E9%93%BE%E4%B8%B2/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="数据结构与算法——串">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%9D%97%E9%93%BE%E4%B8%B2/">数据结构与算法——串</a>
-      </h1>
 
-      <p class="index-excerpt">
-        <a href="/2020/04/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%9D%97%E9%93%BE%E4%B8%B2/">
-          
-          
-            
-          
-          数据结构与算法——串块链串
-        </a>
-      </p>
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-20 11:42" pubdate>
-              2020-04-20
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/04/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
-          <img src="https://i.loli.net/2020/09/24/pHuD1ZJk3bnqVQ7.png" srcset="/img/loading.gif" alt="数据结构与算法-树与二叉树">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">数据结构与算法-树与二叉树</a>
-      </h1>
+rtag
+后继结点
+右孩子结点
 
-      <p class="index-excerpt">
-        <a href="/2020/04/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">
-          
-          
-            
-          
-          数据结构与算法
-        </a>
-      </p>
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-14 23:11" pubdate>
-              2020-04-14
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
+ltag
+前驱结点
+左孩子结点
 
 
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-  </main>
+ 线索存储结点的结构定义代码如下
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+typedef enum &#123 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/04/21/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/" title="二叉树的遍历">二叉树的遍历</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-21T12:42:38.415Z" title="发表于 2020-04-21 20:42:38">2020-04-21</time></span></div><div class="content">二叉树的遍历
+推导遍历结果的方法总结
+能够推到遍历结果的条件：
+    - 已知中序遍历序列
+        - 已知&lt;u&gt;前序遍历&lt;/u&gt; 或 &lt;u&gt;后序遍历&lt;/u&gt; 其中的任意一个
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
 
-  
-    <!-- APlayer 音乐播放器 -->
-    <div id="aplayer"></div>
-    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
-<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
-<script type="text/javascript">
-  var oldLoadAp = window.onload;
-  window.onload = function () {
-    oldLoadAp && oldLoadAp();
 
-    new APlayer({
-      container: document.getElementById('aplayer'),
-      fixed: true,
-      autoplay: 'false' === 'true',
-      loop: 'all',
-      order: 'random',
-      theme: '#b7daff',
-      preload: 'none',
-      audio: [{"name":"Holy","artist":"Justin Bieber","url":"https://gc-sycdn.kuwo.cn/b6b48341bc1b03d6a0b269419df8725a/5f82d444/resource/n2/35/35/3842271089.mp3","cover":"https://i.loli.net/2020/10/11/bwrKhF7Anml2WaO.jpg"}]
-    });
+方法总结：
+ 1.由前序序列的首位或后序序列的末尾得到二叉树的根结点
+ 2.由中序序列得到根结点的左右两边分别是左子树和右子树
+ 3.再根据前序序列或后序序列分别得到根结点的孩子结点
+ 4.再回到中序序列确定左右孩子
+ 5.最后重复3，4步骤直到确定完整棵二叉树的所有结点。
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/04/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E5%9D%97%E9%93%BE%E4%B8%B2/" title="数据结构与算法——串">数据结构与算法——串</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-20T03:42:04.000Z" title="发表于 2020-04-20 11:42:04">2020-04-20</time></span></div><div class="content">数据结构与算法——串块链串
+
+前言
+
+​    在学习串的存储结构时我们知道，顺序存储的方式往往会导致越界的问题出现，然而当我们采用链式存储结构动态分配内存时，如果仅仅是每一个结点只对应一个字符，就会导致很大的一部分空间被浪费。因此，我们使用块链串的概念来完善串的链式存储结构。
+
+什么是块链串
+
+​    简单来说，块链串就是将链表中的结点定义成一个数组，实现一个结点可以存储多个字符。而具体存储多少个字符，则要依据实际的情况做出选择。
+
+块链串的结构定义
+
+ typedef struct _clock
+&#123;
+  char ch[BLOCK_SIZE];	//用于存放字符串的数组  
+  struct _block *next;	//用于链接的指针
+&#125; Block;
+
+typedef struct
+&#123;
+  Block *head;	//指向块链串的头结点
+  Block *tail;	//始终指向块链串的尾结点
+  int len;	//记录块链串的总长度
+&#125;BLString;
+
+块链串的初始化
+
+void blstr_init(BLString * ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/04/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" title="数据结构与算法-树与二叉树">数据结构与算法-树与二叉树</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-14T15:11:04.000Z" title="发表于 2020-04-14 23:11:04">2020-04-14</time></span></div><div class="content">数据结构与算法
+树的表示方法孩子表示法每个结点设置多个指针域，指针指向子树的根结点。即多重链表表示法由于每个结点的度不相同，指针域的个数难以统一，通过两种方案解决
+
+方案一
+以树的度作为指针域的个数 ——在各个结点的度相差很大时会导致空间的浪费
+适用于结点的度相差不大的情况
+
+方案二
+再取一个位置用来保存统计出的结点指针域的个数，提高了空间利用效率，但是却浪费了时间。
+
+综上所述
+采取数组和单链表综合的方法，把树中的结点采用线性存储结构连成一个数组，并将其作为头指针连接一个由孩子结点构成的链表。
+
+结构定义代码如下
+
+
+
+#define MAX_TREE_SIZE 100
+typedef struct CTNode   //孩子结点 -&gt; 孩子链表 
+&#123;
+    int child;
+    struct CTNode *next;
+&#125; *ChildPtr;
+typedef struct  //表头结构 -&gt; 表头数组
+&#123;
+    TElemType data;
+    ChildPtr firstchild;
+&#125; CTBox;
+ty ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2020/10/11/qIJ8W7C43bln9Lz.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Jazz Fu</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length_num">10</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length_num">1</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/KyrieJazz" target="_blank" rel="noopener"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/KyrieJazz" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div></div><div class="sticky_layout"><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to Jazz Park!</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2020/09/17/Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/" title="Java面向对象（上）">Java面向对象（上）</a><time datetime="2020-09-17T15:52:34.000Z" title="发表于 2020-09-17 23:52:34">2020-09-17</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/08/28/%E5%9C%A8%E6%90%AD%E5%BB%BA%E5%92%8C%E4%BC%98%E5%8C%96Hexo%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" title="在搭建和优化Hexo时遇到的问题">在搭建和优化Hexo时遇到的问题</a><time datetime="2020-08-28T14:39:36.000Z" title="发表于 2020-08-28 22:39:36">2020-08-28</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/08/28/H%E2%80%9CHexo%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/" title="Hexo中的常见命令">Hexo中的常见命令</a><time datetime="2020-08-28T14:26:41.000Z" title="发表于 2020-08-28 22:26:41">2020-08-28</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/06/21/%E7%96%AB%E6%83%85%E6%9C%9F%E9%97%B4%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%83%B3/" title="疫情期间的一点感想">疫情期间的一点感想</a><time datetime="2020-06-20T16:21:07.064Z" title="发表于 2020-06-21 00:21:07">2020-06-21</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2020/06/10/TED-%E5%90%91%E6%AD%BB%E8%80%8C%E7%94%9F/" title="TED-向死而生">TED-向死而生</a><time datetime="2020-06-10T14:50:50.153Z" title="发表于 2020-06-10 22:50:50">2020-06-10</time></div></div></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">数据结构与算法</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/08/"><span class="card-archive-list-date">八月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/05/"><span class="card-archive-list-date">五月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/04/"><span class="card-archive-list-date">四月 2020</span><span class="card-archive-list-count">4</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2020-10-11T14:04:38.981Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By Jazz Fu</div><div class="framework-info"><span>框架 </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
   }
-</script>
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-  <!-- 备案信息 -->
-  <div class="beian">
-    <a href="http://beian.miit.gov.cn/" target="_blank"
-       rel="nofollow noopener">京ICP证123456号</a>
-    
-      <a
-        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
-        rel="nofollow noopener"
-        class="beian-police"
-        target="_blank"
-      >
-        <span class="beian-police-sep">&nbsp;|&nbsp;</span>
-        
-          <img src="/img/police_beian.png" srcset="/img/loading.gif" alt="police-icon" />
-        
-        <span>京公网安备12345678号</span>
-      </a>
-     
-  </div>
-
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Welcome to Jazz Park&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "无所求必满载而归".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
       loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '无所求必满载而归'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="aplayer no-destroy" data-id="000PeZCQ1i4XVs" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script id="canvas_nest" defer="defer" color="255,48,48" opacity="0.8" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
 
 
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
     }
-  </script>
+  }
 
+  typeof typed === 'object' && typed.destroy()
 
+  $(window).off('scroll')
 
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <!-- Baidu Analytics -->
-    <script defer>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?86858a129f82a79628aae85cc386f5a9";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
-</html>
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"tagMode":false});</script></body></html>
