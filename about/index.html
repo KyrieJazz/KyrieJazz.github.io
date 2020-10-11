@@ -272,6 +272,29 @@
   
 
   
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"Holy","artist":"Justin Bieber","url":"https://gc-sycdn.kuwo.cn/b6b48341bc1b03d6a0b269419df8725a/5f82d444/resource/n2/35/35/3842271089.mp3","cover":"https://i.loli.net/2020/10/11/bwrKhF7Anml2WaO.jpg"}]
+    });
+  }
+</script>
+
+  
 
   
 
