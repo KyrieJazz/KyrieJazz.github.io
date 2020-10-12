@@ -1,0 +1,7 @@
+#web_bg {
+    background-color: #e6e6e6;
+    background-image: -webkit-linear-gradient(0deg, #e6e6e6 0%, #5f7a95 100%);
+    background-image: -moz-linear-gradient(0deg, #e6e6e6 0%, #5f7a95 100%);
+    background-image: -o-linear-gradient(0deg, #e6e6e6 0%, #5f7a95 100%);
+    background-image: linear-gradient(0deg, #e6e6e6 0%, #5f7a95 100%);
+}
