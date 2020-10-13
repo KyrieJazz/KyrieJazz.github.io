@@ -3155,21 +3155,14 @@ blockquote footer cite:before {
   -moz-background-size: cover;
   background-size: cover;
 }
-#footer:before {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  content: '';
-}
 #footer-wrap {
   position: relative;
   padding: 2rem 1rem;
-  color: var(--light-grey);
+  color: var(--light-black);
   text-align: center;
 }
 #footer-wrap a {
-  color: var(--light-grey);
+  color: var(--light-blue);
 }
 #footer-wrap a:hover {
   text-decoration: underline;
@@ -3184,7 +3177,6 @@ blockquote footer cite:before {
 #page-header {
   position: relative;
   width: 100%;
-  background-color: transparent;
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
