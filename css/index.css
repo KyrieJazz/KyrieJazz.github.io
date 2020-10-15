@@ -3735,7 +3735,7 @@ _:future,
   cursor: pointer;
 }
 #pagination .page-number.current {
-  background: #00c4b6;
+  background: #3272e9;
   color: var(--white);
   cursor: default;
 }
@@ -4549,15 +4549,15 @@ img {
   transition: all 0.2s ease-in-out;
 }
 #sidebar .sidebar-toc .toc-link.active {
-  border-right-color: #009d92;
-  background: #00c4b6;
+  border-right-color: #0756f1;
+  background: #3d7cf9;
   color: #fff;
 }
 #sidebar .sidebar-toc__progress {
   position: relative;
   margin-bottom: 0.3rem;
   padding-left: 0.6rem;
-  color: #00c4b6;
+  color: #3d7cf9;
 }
 #sidebar .sidebar-toc__progress .progress-notice {
   margin-right: 0.4rem;
@@ -4569,7 +4569,7 @@ img {
 #sidebar .sidebar-toc__progress-bar {
   width: 0;
   height: 1px;
-  background: #00c4b6;
+  background: #3d7cf9;
 }
 #vcomment {
   font-size: 1.1em;
